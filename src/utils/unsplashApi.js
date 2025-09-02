@@ -1,4 +1,5 @@
 export async function fetchRandomImage() {
+  // You can change the query to fetch different types of images
   const query = "nature";
 
   const res = await fetch(
