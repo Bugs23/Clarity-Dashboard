@@ -14,7 +14,6 @@ export async function fetchCrypto() {
 
   // Check if there are results
   if (data && data.id === query) {
-    console.log(data);
     return data;
   } else {
     throw new Error("No coin found");

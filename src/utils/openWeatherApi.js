@@ -1,7 +1,4 @@
-console.log("ENV VARS:", import.meta.env);
-
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
-console.log("API_KEY:", API_KEY);
 
 export async function fetchWeather(latitude, longitude) {
   const res = await fetch(
