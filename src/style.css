@@ -142,17 +142,14 @@ PRIMARY STYLES
 body {
   margin: 0;
   background: no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   color: white;
   font-family: "Inter", sans-serif;
-  text-shadow: 0px 0px 20px #aaaaaa;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 main {
-  padding: 15px;
+  padding: 30px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -170,14 +167,14 @@ h1.time {
 
 .widget {
   display: flex;
-  align-items: center;
+  align-items: end;
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
   max-width: 100%;
 }
 
-.widget__left {
+.widget__value {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -189,15 +186,14 @@ h1.time {
 }
 
 .widget__price {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 26px;
+  font-weight: 400;
   white-space: nowrap;
 }
 
 .widget__label {
   font-size: 14px;
   font-weight: 400;
-  opacity: 0.8;
   margin-left: auto;
 }
 

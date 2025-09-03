@@ -1,7 +1,10 @@
 import "./style.css";
 import { fetchRandomImage } from "./utils/unsplashApi.js";
 import { fetchCrypto } from "./utils/coinGeckoApi.js";
+import { fetchWeather } from "./utils/openWeatherApi.js";
+import { getLocation } from "./utils/geoLocation.js";
 
+// Fetch and display a random image from Unsplash
 async function getImage() {
   try {
     const photo = await fetchRandomImage();
@@ -23,6 +26,7 @@ function setBackgroundImage(photo) {
   ).textContent = `Photo by: ${photo.user.name}`;
 }
 
+// Fetch and display cryptocurrency data from CoinGecko
 async function getCrypto() {
   try {
     const crypto = await fetchCrypto();
@@ -37,7 +41,7 @@ async function getCrypto() {
 function setCrypto(crypto) {
   document.getElementById("crypto").innerHTML = `
     <div class="widget">
-      <div class="widget__left">
+      <div class="widget__value">
         <img class="widget__icon" src="node_modules/cryptocurrency-icons/svg/white/${
           crypto.symbol
         }.svg" alt="${crypto.name} logo" />
@@ -47,6 +51,33 @@ function setCrypto(crypto) {
     </div>`;
 }
 
+// Fetch and display weather data from OpenWeather API
+async function getWeather() {
+  try {
+    const { latitude, longitude } = await getLocation();
+    console.log("Latitude/Longitude:", latitude, longitude);
+    const weather = await fetchWeather(latitude, longitude);
+    setWeather(weather);
+  } catch (error) {
+    console.error(error);
+    document.getElementById("weather").textContent = "Weather (fallback)";
+  }
+}
+
+function setWeather(weather) {
+  document.getElementById("weather").innerHTML = `
+    <div class="widget">
+      <div class="widget__value">
+        <img class="widget__icon" src="https://openweathermap.org/img/wn/${
+          weather.weather[0].icon
+        }@4x.png" alt="${weather.weather[0].description}" />
+        <span class="widget__price">${Math.round(weather.main.temp)}º</span>
+      </div>
+      <span class="widget__label">${weather.name}</span>
+    </div>`;
+}
+
+// Display current time
 function getTime() {
   const time = new Date();
   const currentTime = time.toLocaleTimeString("en-US", {
@@ -60,6 +91,7 @@ getTime();
 setInterval(getTime, 1000);
 getImage();
 getCrypto();
+getWeather();
 
 // Update crypto every 60 seconds
 setInterval(getCrypto, 60000);
