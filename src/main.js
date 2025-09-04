@@ -52,9 +52,9 @@ function setCrypto(crypto) {
     }" class="widget-link" target="_blank" rel="noreferrer">
       <div class="widget">
         <div class="widget__value">
-          <img class="widget__icon" src="node_modules/cryptocurrency-icons/svg/white/${
-            crypto.symbol
-          }.svg" alt="${crypto.name} logo" />
+          <img class="widget__icon" src="/images/${crypto.symbol}.svg" alt="${
+    crypto.name
+  } logo" />
           <span class="widget__price">$${crypto.market_data.current_price.usd.toLocaleString()}</span>
         </div>
         <span class="widget__label">${crypto.name} (${crypto.symbol})</span>
