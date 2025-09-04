@@ -41,7 +41,7 @@ async function getCrypto() {
     setCrypto(crypto);
   } catch (error) {
     console.error(error);
-    document.getElementById("crypto-info").textContent = "Bitcoin (fallback)";
+    document.getElementById("crypto").textContent = "Bitcoin (fallback)";
   }
 }
 
